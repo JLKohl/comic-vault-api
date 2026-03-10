@@ -6,7 +6,7 @@ const { MongoClient } = require('mongodb');
 
 let swaggerSpec;
 try {
-  swaggerSpec = require('./swagger-output.json');
+  swaggerSpec = require('../swagger-output.json');
 } catch (error) {
   console.warn('Swagger docs not generated yet. Run "npm run swagger" to create swagger-output.json.');
   swaggerSpec = {
