@@ -1,0 +1,32 @@
+[
+    {
+      "title": "A Whisper in the Dark",
+      "issueNumber": 1,
+      "releaseDate": "2026-03-01",
+      "summary": "Shadow Finch investigates a mysterious disappearance in Nocturne City.",
+      "charactersFeatured": ["Shadow Finch"],
+      "place": "Nocturne City",
+      "storyArc": "The Library of Ash",
+      "pageCount": 28
+    },
+    {
+      "title": "Steel and Shadows",
+      "issueNumber": 2,
+      "releaseDate": "2026-04-01",
+      "summary": "Iron Warden joins forces with Shadow Finch to stop a growing threat.",
+      "charactersFeatured": ["Shadow Finch", "Iron Warden"],
+      "place": "Metro City",
+      "storyArc": "The Library of Ash",
+      "pageCount": 30
+    },
+    {
+      "title": "The Queen's Gambit",
+      "issueNumber": 3,
+      "releaseDate": "2026-05-01",
+      "summary": "Lady Vex begins her plan to seize control of Veloria.",
+      "charactersFeatured": ["Lady Vex"],
+      "place": "Veloria",
+      "storyArc": "Rise of the Whisper Queen",
+      "pageCount": 32
+    }
+  ]
