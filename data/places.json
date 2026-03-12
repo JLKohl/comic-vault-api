@@ -1,0 +1,26 @@
+[
+    {
+      "name": "Nocturne City",
+      "type": "City",
+      "description": "A sprawling city built above ancient underground archives.",
+      "population": 2000000,
+      "technologyLevel": "Modern",
+      "notableLocations": ["Central Library", "Old Harbor"]
+    },
+    {
+      "name": "Metro City",
+      "type": "City",
+      "description": "A high-tech metropolis protected by powerful heroes.",
+      "population": 3500000,
+      "technologyLevel": "Advanced",
+      "notableLocations": ["Sky Tower", "Metro Labs"]
+    },
+    {
+      "name": "Veloria",
+      "type": "Kingdom",
+      "description": "An ancient kingdom known for powerful magic and political intrigue.",
+      "population": 800000,
+      "technologyLevel": "Medieval",
+      "notableLocations": ["Velorian Palace", "Arcane Academy"]
+    }
+  ]

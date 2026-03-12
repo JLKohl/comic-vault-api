@@ -1,0 +1,18 @@
+[
+    {
+      "title": "The Library of Ash",
+      "description": "A mysterious archive holds dangerous knowledge that could reshape the world.",
+      "mainCharacters": ["Shadow Finch", "Iron Warden"],
+      "startIssue": 1,
+      "endIssue": 2,
+      "status": "Ongoing"
+    },
+    {
+      "title": "Rise of the Whisper Queen",
+      "description": "Lady Vex begins building her empire using forbidden magic.",
+      "mainCharacters": ["Lady Vex"],
+      "startIssue": 3,
+      "endIssue": 6,
+      "status": "Planned"
+    }
+  ]

@@ -1,0 +1,22 @@
+[
+    {
+      "name": "Shadow Finch",
+      "alias": "The Archivist",
+      "species": "Human",
+      "alignment": "Anti-Hero",
+      "abilities": ["Stealth", "Shadow manipulation"],
+      "firstAppearanceIssue": 1,
+      "homePlace": "Nocturne City",
+      "status": "Active"
+    },
+    {
+      "name": "Iron Warden",
+      "alias": "The Sentinel",
+      "species": "Human",
+      "alignment": "Hero",
+      "abilities": ["Enhanced strength", "Armor suit"],
+      "firstAppearanceIssue": 2,
+      "homePlace": "Metro City",
+      "status": "Active"
+    }
+  ]
