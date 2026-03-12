@@ -1,27 +1,35 @@
-const mongodb = require('../db/connect');
-const ObjectId = require('mongodb').ObjectI
+const mongoose = require('mongoose')
 
-const getAllStoryArcs = async () => {
-    const db = mongodb.getDb().db();
-    return await db.collection('storyArcs').find().toArray();
-}
+const storyArcSchema = new mongoose.Schema ({
 
-const getAllStoryArcsById = async (id) => {
-    const db = mongodb.getDb().db();
-    return await db.collection('storyArcs').findOne({ _id:new ObjectId(id) });
-}
+    title: {
+        type: String,
+        required: true
+      },
+    
+      description: {
+        type: String,
+        required: true
+      },
+    
+      mainCharacters: {
+        type: [String]
+      },
+    
+      startIssue: {
+        type: Number
+      },
+    
+      endIssue: {
+        type: Number
+      },
+    
+      status: {
+        type: String,
+        enum: ['Planned', 'Ongoing', 'Completed'],
+        default: 'Planned'
+      }
+    
+    }, { timestamps: true });
 
-const createStoryArcs = async () => {
-    const db = mongodb.getDb().db();
-    return await db.collection('storyArcs').find().toArray();
-}
-
-const getAllStoryArcs = async () => {
-    const db = mongodb.getDb().db();
-    return await db.collection('storyArcs').find().toArray();
-}
-
-module.exports = {
-    getAllStoryArcs,
-    getAllStoryArcsById
-}
+module.exports = mongoose.model(storyArcSchema);
