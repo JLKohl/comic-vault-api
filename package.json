@@ -4,7 +4,6 @@
   "description": "RESTful API for managing comic characters, issues, story arcs, and worlds.",
   "main": "index.js",
   "scripts": {
-    "start": "node src/server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "swagger": "node swagger.js",
     "start": "node server.js"

@@ -1,10 +1,19 @@
-require('dotenv').config();
+try {
+  require('dotenv').config();
+} catch {
+  // Render provides env vars directly; this keeps production startup resilient.
+}
 
 const express = require('express');
 const swaggerUi = require('swagger-ui-express');
 const mongoose = require('mongoose');
 const characterRoutes = require('./src/routes/characterRoutes');
 
+
+//check to make sure .env file is set up correctly in project
+if (!process.env.MONGO_URI) {
+  throw new Error("MONGO_URI is not defined in environment variables");
+}
 
 let swaggerSpec;
 try {
