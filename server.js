@@ -7,6 +7,8 @@ try {
 const express = require('express');
 const swaggerUi = require('swagger-ui-express');
 const mongoose = require('mongoose');
+const characterRoutes = require('./src/routes/characterRoutes');
+
 
 //check to make sure .env file is set up correctly in project
 if (!process.env.MONGO_URI) {
@@ -34,6 +36,10 @@ const port = process.env.PORT || 3000;
 // Middleware
 app.use(express.json());
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
+// Routes
+app.use('/api/characters', characterRoutes);
+
 
 // Test route
 /**
