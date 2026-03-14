@@ -8,6 +8,11 @@ const express = require('express');
 const swaggerUi = require('swagger-ui-express');
 const mongoose = require('mongoose');
 
+//check to make sure .env file is set up correctly in project
+if (!process.env.MONGO_URI) {
+  throw new Error("MONGO_URI is not defined in environment variables");
+}
+
 let swaggerSpec;
 try {
   swaggerSpec = require('./swagger-output.json');
@@ -49,9 +54,6 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.get('/', (req, res) => {
   res.send('Welcome to The Comic Vault API');
 });
-
-// DEBUG LINE
-console.log("MONGO_URI:", process.env.MONGO_URI);
 
 // MongoDB connection with mongoose
 mongoose.connect(process.env.MONGO_URI)
