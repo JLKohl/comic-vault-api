@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/JLKohl/comic-vault-api#readme",
   "dependencies": {
+    "connect-flash": "^0.1.1",
     "express": "^5.2.1",
     "mongoose": "^8.23.0",
     "swagger-autogen": "^2.23.7",
