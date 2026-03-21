@@ -1,14 +1,23 @@
-require('dotenv').config();
+try {
+  require('dotenv').config();
+} catch {
+  // Render provides env vars directly; this keeps production startup resilient.
+}
 
 const express = require('express');
 const swaggerUi = require('swagger-ui-express');
 const mongoose = require('mongoose');
-const passport = require('passport');
-const session = require('express-session');
+const characterRoutes = require('./src/routes/characterRoutes');
+
+
+//check to make sure .env file is set up correctly in project
+if (!process.env.MONGO_URI) {
+  throw new Error("MONGO_URI is not defined in environment variables");
+}
 
 let swaggerSpec;
 try {
-  swaggerSpec = require('../swagger-output.json');
+  swaggerSpec = require('./swagger-output.json');
 } catch (error) {
   console.warn('Swagger docs not generated yet. Run "npm run swagger" to create swagger-output.json.');
   swaggerSpec = {
@@ -27,14 +36,10 @@ const port = process.env.PORT || 3000;
 // Middleware
 app.use(express.json());
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-app.use(session({
-  secret: 'your-secret',
-  resave: false,
-  saveUninitialized: false
-}));
 
-app.use(passport.initialize());
-app.use(passport.session());
+// Routes
+app.use('/api/characters', characterRoutes);
+
 
 // Test route
 /**

@@ -13,6 +13,10 @@ const doc = {
       url: `http://localhost:${port}`,
       description: 'Local development server',
     },
+    {
+      url: 'https://comic-vault-api.onrender.com',
+      description: 'Production server (Render)',
+    }
   ],
 };
 
