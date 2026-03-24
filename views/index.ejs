@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comic Book API</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to our Comic Book Planner</h1>
+
+        <% if (errorMessage.length > 0) { %>
+            <p class="error"><%= errorMessage[0] %></p>
+        <% } %>
+    
+        <div>
+            <p>Please log in with your Google account</p>
+        </div>
+        <button onclick="location.href='/auth/google'">Google Log in</button>
+    </div>
+
+</body>
+
+</html>
