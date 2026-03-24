@@ -14,7 +14,7 @@ const doc = {
       description: 'Local development server',
     },
     {
-      url: 'https://comic-vault-api.onrender.com',
+      url: 'https://comic-vault-api-f41d.onrender.com',
       description: 'Production server (Render)',
     }
   ],
