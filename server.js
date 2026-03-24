@@ -13,6 +13,7 @@ console.log("MONGO_URI:", process.env.MONGO_URI);
 // IMPORTS
 // ======================
 const express = require('express');
+const cors = require('cors');
 const mongoose = require('mongoose');
 const swaggerUi = require('swagger-ui-express');
 const flash = require('connect-flash');
@@ -68,6 +69,7 @@ try {
 // MIDDLEWARE
 // ======================
 app.use(express.json());
+app.use(cors());
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // ======================

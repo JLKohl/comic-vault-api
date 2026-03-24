@@ -22,6 +22,7 @@
   "homepage": "https://github.com/JLKohl/comic-vault-api#readme",
   "dependencies": {
     "connect-flash": "^0.1.1",
+    "cors": "^2.8.6",
     "dotenv": "^16.6.1",
     "ejs": "^5.0.1",
     "express": "^5.2.1",
