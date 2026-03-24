@@ -15,9 +15,12 @@ console.log("MONGO_URI:", process.env.MONGO_URI);
 const express = require('express');
 const mongoose = require('mongoose');
 const swaggerUi = require('swagger-ui-express');
+const flash = require('connect-flash');
 
 // Routes
+const homeRoute = require('./src/routes/home');
 const characterRoutes = require('./src/routes/characterRoutes');
+
 
 // ======================
 // ENV VALIDATION
@@ -31,6 +34,16 @@ if (!process.env.MONGO_URI) {
 // ======================
 const app = express();
 const port = process.env.PORT || 3000;
+
+//use ejs file for home page
+app.set('view engine', 'ejs');
+
+// Flash messages
+app.use(flash());
+app.use((req, res, next) => {
+  res.locals.errorMessage = req.flash('error');
+  next();
+});
 
 // ======================
 // SWAGGER SETUP
@@ -60,12 +73,9 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 // ======================
 // ROUTES
 // ======================
+app.use('/', homeRoute);
 app.use('/api/characters', characterRoutes);
 
-// Health Check
-app.get('/', (req, res) => {
-  res.send('Welcome to The Comic Vault API');
-});
 
 // ======================
 // DATABASE + SERVER START
