@@ -17,6 +17,10 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const swaggerUi = require('swagger-ui-express');
 const flash = require('connect-flash');
+const session = require('express-session'); 
+const passport = require('passport'); 
+
+require('./src/middleware/passport');
 
 // Routes
 const homeRoute = require('./src/routes/home');
@@ -36,10 +40,21 @@ if (!process.env.MONGO_URI) {
 const app = express();
 const port = process.env.PORT || 3000;
 
-//use ejs file for home page
+// view engine
 app.set('view engine', 'ejs');
 
-// Flash messages
+// ======================
+// MIDDLEWARE
+// ======================
+app.use(express.json());
+app.use(cors());
+app.use(session({
+  secret: 'supersecretkey', // change later to env var
+  resave: false,
+  saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(flash());
 app.use((req, res, next) => {
   res.locals.errorMessage = req.flash('error');
@@ -65,11 +80,6 @@ try {
   };
 }
 
-// ======================
-// MIDDLEWARE
-// ======================
-app.use(express.json());
-app.use(cors());
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // ======================
@@ -84,13 +94,13 @@ app.use('/api/characters', characterRoutes);
 // ======================
 mongoose.connect(process.env.MONGO_URI)
   .then(() => {
-    console.log('✅ MongoDB connected');
+    console.log('MongoDB connected');
 
     app.listen(port, () => {
-      console.log(`🚀 Server running on port ${port}`);
+      console.log(`Server running on port ${port}`);
     });
 
   })
   .catch(err => {
-    console.error('❌ MongoDB connection failed:', err);
+    console.error('MongoDB connection failed:', err);
   });
