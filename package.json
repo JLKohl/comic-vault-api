@@ -4,7 +4,7 @@
   "description": "RESTful API for managing comic characters, issues, story arcs, and worlds.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "swagger": "node swagger.js",
     "start": "node server.js"
   },
@@ -34,5 +34,8 @@
     "passport-google-oauth20": "^2.0.0",
     "swagger-autogen": "^2.23.7",
     "swagger-ui-express": "^5.0.1"
+  },
+  "devDependencies": {
+    "jest": "^30.3.0"
   }
 }
