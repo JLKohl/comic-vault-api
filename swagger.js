@@ -5,7 +5,8 @@ const port = process.env.PORT || 3000;
 const doc = {
   info: {
     title: 'Comic Vault API',
-    description: 'RESTful API for managing comic characters, issues, story arcs, and worlds.',
+    description:
+      'RESTful API for managing comic characters, issues, story arcs, and worlds.',
     version: '1.0.0',
   },
   servers: [
@@ -16,7 +17,7 @@ const doc = {
     {
       url: 'https://comic-vault-api-f41d.onrender.com',
       description: 'Production server (Render)',
-    }
+    },
   ],
 };
 
