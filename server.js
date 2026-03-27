@@ -58,25 +58,16 @@ app.use((req, res, next) => {
 
 app.set('view engine', 'ejs');
 
-/**
- * @openapi
- * /:
- *   get:
- *     summary: Health check endpoint
- *     tags:
- *       - General
- *     responses:
- *       200:
- *         description: API is running
- */
-
 app.get('/', (req, res) => {
   res.render('index', { user: req.user });
 });
+
+// #swagger.ignore = true
 app.use('/auth', authRoutes);
 app.use('/api/characters', characterRoutes);
 app.use('/api/story-arc', storyArcRoutes);
 
+// #swagger.ignore = true
 app.use(
   '/api-docs',
   ensureAuthenticated,

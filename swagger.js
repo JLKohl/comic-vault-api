@@ -19,6 +19,9 @@ const doc = {
       description: 'Production server (Render)',
     },
   ],
+
+  basePath: '/',
+  
   tags: [
     { name: 'Characters', description: 'Routes for managing comic characters' },
     { name: 'Story Arc', description: 'Routes for managing story arcs' }
@@ -27,7 +30,6 @@ const doc = {
 
 const outputFile = './swagger-output.json';
 const endpointsFiles = [
-  'server.js',
   './src/routes/characterRoutes.js',
   './src/routes/storyArcRoutes.js'
 ];

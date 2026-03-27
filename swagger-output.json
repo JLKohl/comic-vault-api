@@ -26,70 +26,7 @@
     }
   ],
   "paths": {
-    "/": {
-      "get": {
-        "tags": [
-          "Story Arc"
-        ],
-        "description": "",
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          },
-          "default": {
-            "description": ""
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Story Arc"
-        ],
-        "description": "",
-        "responses": {
-          "201": {
-            "description": "Created"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        }
-      }
-    },
-    "/auth/google": {
-      "get": {
-        "description": "",
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      }
-    },
-    "/auth/google/callback": {
-      "get": {
-        "description": "",
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      }
-    },
-    "/auth/logout": {
-      "get": {
-        "description": "",
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      }
-    },
-    "/api/characters/": {
+    "/api/characters": {
       "get": {
         "tags": [
           "Characters"
@@ -98,6 +35,9 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
           },
           "500": {
             "description": "Internal Server Error"
@@ -117,51 +57,12 @@
             "description": "Bad Request"
           }
         }
-      }
-    },
-    "/api/characters/{id}": {
-      "get": {
-        "tags": [
-          "Characters"
-        ],
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
       },
       "put": {
         "tags": [
           "Characters"
         ],
         "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -179,16 +80,6 @@
           "Characters"
         ],
         "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -202,7 +93,7 @@
         }
       }
     },
-    "/api/story-arc/": {
+    "/api/storyArc": {
       "get": {
         "tags": [
           "Story Arc"
@@ -211,6 +102,9 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
           },
           "500": {
             "description": "Internal Server Error"
@@ -223,37 +117,11 @@
         ],
         "description": "",
         "responses": {
-          "400": {
-            "description": "Bad Request"
-          }
-        }
-      }
-    },
-    "/api/story-arc/{id}": {
-      "get": {
-        "tags": [
-          "Story Arc"
-        ],
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
+          "201": {
+            "description": "Created"
           },
           "400": {
             "description": "Bad Request"
-          },
-          "500": {
-            "description": "Internal Server Error"
           }
         }
       },
@@ -262,16 +130,6 @@
           "Story Arc"
         ],
         "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -289,102 +147,6 @@
           "Story Arc"
         ],
         "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/{id}": {
-      "get": {
-        "tags": [
-          "Story Arc"
-        ],
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Story Arc"
-        ],
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "404": {
-            "description": "Not Found"
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Story Arc"
-        ],
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "OK"
