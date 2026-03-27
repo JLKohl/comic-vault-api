@@ -1,0 +1,12 @@
+# Ignore dependencies
+node_modules
+package-lock.json
+swagger-output.json
+
+# Ignore build outputs
+dist
+build
+coverage
+
+# Ignore environment secrets
+.env
