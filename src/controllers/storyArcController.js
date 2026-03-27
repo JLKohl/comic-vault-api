@@ -14,8 +14,8 @@ exports.getAllStoryArcs = async (req, res) => {
 exports.getStoryArcById = async (req, res) => {
     try {
         const storyArc = await StoryArc.findById(req.params.id);
-        if (!storyArc) return res.status(400).json({ message: 'Story arc not found' });
-        res.status(200).json(character);
+        if (!storyArc) return res.status(404).json({ message: 'Story arc not found' });
+        res.status(200).json(storyArc);
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
@@ -26,7 +26,7 @@ exports.createStoryArc = async (req, res) => {
     try {
         const newStoryArc = new StoryArc(req.body);
         const savedStoryArc = await newStoryArc.save();
-        req.status(201).json(savedStoryArc);
+        res.status(201).json(savedStoryArc);
     } catch (err) {
         res.status(400).json({ message: "Validation Error", error: err.message });
     }
@@ -56,7 +56,7 @@ exports.deleteStoryArc = async (req, res) => {
         const deletedStoryArc = await StoryArc.findByIdAndDelete(req.params.id);
 
         if (!deletedStoryArc) {
-            return res.status(404),json({ message: 'Story arc not found' });
+            return res.status(404).json({ message: 'Story arc not found' });
         }
         res.status(200).json({ message: 'Story arc deleted successfully' });
     } catch (err) {
