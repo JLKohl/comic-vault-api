@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
+    "seed": "node seed.js",
     "swagger": "node swagger.js",
     "start": "node server.js"
   },

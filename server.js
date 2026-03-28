@@ -11,7 +11,7 @@ const cors = require('cors');
 require('./src/middleware/passport');
 
 const authRoutes = require('./src/routes/authRoutes');
-const characterRoutes = require('./src/routes/characterRoutes');
+const routes = require('./src/routes/home');
 const { ensureAuthenticated } = require('./src/middleware/authMiddleware');
 
 if (!process.env.MONGO_URI) {
@@ -73,7 +73,7 @@ app.get('/', (req, res) => {
   res.render('index', { user: req.user });
 });
 app.use('/auth', authRoutes);
-app.use('/api/characters', characterRoutes);
+app.use('/', routes);
 
 app.use(
   '/api-docs',
