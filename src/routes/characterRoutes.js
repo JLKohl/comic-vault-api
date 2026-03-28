@@ -3,38 +3,48 @@ const router = express.Router();
 const characterController = require('../controllers/characterController');
 
 // GET all characters
-router.get('/', 
-    /* #swagger.tags = ['Characters']
+router.get(
+  '/',
+  /* #swagger.tags = ['Characters']
     #swagger.path = '/api/characters'
     */
-    characterController.getAllCharacters);
+  characterController.getAllCharacters
+);
 
 // GET a specific character by ID
-router.get('/:id', 
-    /* #swagger.tags = ['Characters']
+router.get(
+  '/:id',
+  /* #swagger.tags = ['Characters']
     #swagger.path = '/api/characters'
     */
-    characterController.getCharacterById);
+  characterController.getCharacterById
+);
 
 // POST a new character
-router.post('/', 
-    /* #swagger.tags = ['Characters']
+router.post(
+  '/',
+  /* #swagger.tags = ['Characters']
     #swagger.path = '/api/characters'
     */
-    characterController.createCharacter);
+  characterController.createCharacter
+);
 
 // PUT/PATCH to update a character
-router.put('/:id', 
-    /* #swagger.tags = ['Characters']
+router.put(
+  '/:id',
+  /* #swagger.tags = ['Characters']
     #swagger.path = '/api/characters'
     */
-    characterController.updateCharacter);
+  characterController.updateCharacter
+);
 
 // DELETE a character
-router.delete('/:id', 
-    /* #swagger.tags = ['Characters']
+router.delete(
+  '/:id',
+  /* #swagger.tags = ['Characters']
     #swagger.path = '/api/characters'
     */
-    characterController.deleteCharacter);
+  characterController.deleteCharacter
+);
 
 module.exports = router;

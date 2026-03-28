@@ -6,91 +6,91 @@ const controller = require('../src/controllers/characterController');
 
 // Helpers to mock Express req/res
 const mockResponse = () => {
-    const res = {};
-    res.status = jest.fn().mockReturnValue(res);
-    res.json = jest.fn().mockReturnValue(res);
-    return res;
+  const res = {};
+  res.status = jest.fn().mockReturnValue(res);
+  res.json = jest.fn().mockReturnValue(res);
+  return res;
 };
 
 const mockRequest = (data = {}) => ({
-    params: data.params || {},
-    body: data.body || {}
+  params: data.params || {},
+  body: data.body || {},
 });
 
 beforeEach(() => {
-    jest.clearAllMocks();
+  jest.clearAllMocks();
 });
 
 // getAllCharacters
 describe('getAllCharacters', () => {
-    it('should return all characters', async () => {
-        const mockData = [{ name: 'Bobby' }];
+  it('should return all characters', async () => {
+    const mockData = [{ name: 'Bobby' }];
 
-        Character.find.mockResolvedValue(mockData);
+    Character.find.mockResolvedValue(mockData);
 
-        const req = mockRequest();
-        const res = mockResponse();
+    const req = mockRequest();
+    const res = mockResponse();
 
-        await controller.getAllCharacters(req, res);
+    await controller.getAllCharacters(req, res);
 
-        expect(Character.find).toHaveBeenCalled();
-        expect(res.status).toHaveBeenCalledWith(200);
-        expect(res.json).toHaveBeenCalledWith(mockData);
-    });
+    expect(Character.find).toHaveBeenCalled();
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.json).toHaveBeenCalledWith(mockData);
+  });
 
-    it('should handle errors', async () => {
-        Character.find.mockRejectedValue(new Error('DB error'));
+  it('should handle errors', async () => {
+    Character.find.mockRejectedValue(new Error('DB error'));
 
-        const req = mockRequest();
-        const res = mockResponse();
+    const req = mockRequest();
+    const res = mockResponse();
 
-        await controller.getAllCharacters(req, res);
+    await controller.getAllCharacters(req, res);
 
-        expect(res.status).toHaveBeenCalledWith(500);
-        expect(res.json).toHaveBeenCalledWith({ message: 'DB error' });
-    });
+    expect(res.status).toHaveBeenCalledWith(500);
+    expect(res.json).toHaveBeenCalledWith({ message: 'DB error' });
+  });
 });
 
 // getCharacterById
 describe('getCharacterById', () => {
-    it('should return a character', async () => {
-        const mockCharacter = { id: '1', name: 'Hank' };
+  it('should return a character', async () => {
+    const mockCharacter = { id: '1', name: 'Hank' };
 
-        Character.findById.mockResolvedValue(mockCharacter);
+    Character.findById.mockResolvedValue(mockCharacter);
 
-        const req = mockRequest({ params: { id: '1' } });
-        const res = mockResponse();
+    const req = mockRequest({ params: { id: '1' } });
+    const res = mockResponse();
 
-        await controller.getCharacterById(req, res);
+    await controller.getCharacterById(req, res);
 
-        expect(Character.findById).toHaveBeenCalledWith('1');
-        expect(res.status).toHaveBeenCalledWith(200);
-        expect(res.json).toHaveBeenCalledWith(mockCharacter);
-    });
+    expect(Character.findById).toHaveBeenCalledWith('1');
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.json).toHaveBeenCalledWith(mockCharacter);
+  });
 
-    it('should return 404 if character not found', async () => {
-        Character.findById.mockResolvedValue(null);
+  it('should return 404 if character not found', async () => {
+    Character.findById.mockResolvedValue(null);
 
-        const req = mockRequest({ params: { id: '1' } });
-        const res = mockResponse();
+    const req = mockRequest({ params: { id: '1' } });
+    const res = mockResponse();
 
-        await controller.getCharacterById(req, res);
+    await controller.getCharacterById(req, res);
 
-        expect(res.status).toHaveBeenCalledWith(404);
-        expect(res.json).toHaveBeenCalledWith({ message: 'Character not found' });
-    });
+    expect(res.status).toHaveBeenCalledWith(404);
+    expect(res.json).toHaveBeenCalledWith({ message: 'Character not found' });
+  });
 
-    it('should handle errors', async () => {
-        Character.findById.mockRejectedValue(new Error('DB error'));
+  it('should handle errors', async () => {
+    Character.findById.mockRejectedValue(new Error('DB error'));
 
-        const req = mockRequest({ params: { id: '1' } });
-        const res = mockResponse();
+    const req = mockRequest({ params: { id: '1' } });
+    const res = mockResponse();
 
-        await controller.getCharacterById(req, res);
+    await controller.getCharacterById(req, res);
 
-        expect(res.status).toHaveBeenCalledWith(500);
-        expect(res.json).toHaveBeenCalledWith({ message: 'DB error' });
-    });
+    expect(res.status).toHaveBeenCalledWith(500);
+    expect(res.json).toHaveBeenCalledWith({ message: 'DB error' });
+  });
 });
 
 // createCharacter
@@ -99,7 +99,7 @@ describe('createCharacter', () => {
     const mockSave = jest.fn().mockResolvedValue({ name: 'Peggy' });
 
     Character.mockImplementation(() => ({
-      save: mockSave
+      save: mockSave,
     }));
 
     const req = mockRequest({ body: { name: 'Peggy' } });
@@ -116,7 +116,7 @@ describe('createCharacter', () => {
     const mockSave = jest.fn().mockRejectedValue(new Error('Invalid data'));
 
     Character.mockImplementation(() => ({
-      save: mockSave
+      save: mockSave,
     }));
 
     const req = mockRequest({ body: {} });
@@ -127,7 +127,7 @@ describe('createCharacter', () => {
     expect(res.status).toHaveBeenCalledWith(400);
     expect(res.json).toHaveBeenCalledWith({
       message: 'Validation Error',
-      error: 'Invalid data'
+      error: 'Invalid data',
     });
   });
 });
@@ -141,7 +141,7 @@ describe('updateCharacter', () => {
 
     const req = mockRequest({
       params: { id: '1' },
-      body: { name: 'Updated Name' }
+      body: { name: 'Updated Name' },
     });
     const res = mockResponse();
 
@@ -180,7 +180,7 @@ describe('updateCharacter', () => {
     expect(res.status).toHaveBeenCalledWith(400);
     expect(res.json).toHaveBeenCalledWith({
       message: 'Update failed',
-      error: 'Update failed'
+      error: 'Update failed',
     });
   });
 });
@@ -198,7 +198,7 @@ describe('deleteCharacter', () => {
     expect(Character.findByIdAndDelete).toHaveBeenCalledWith('1');
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({
-      message: 'Character deleted successfully'
+      message: 'Character deleted successfully',
     });
   });
 

@@ -21,17 +21,17 @@ const doc = {
   ],
 
   basePath: '/',
-  
+
   tags: [
     { name: 'Characters', description: 'Routes for managing comic characters' },
-    { name: 'Story Arc', description: 'Routes for managing story arcs' }
+    { name: 'Story Arc', description: 'Routes for managing story arcs' },
   ],
 };
 
 const outputFile = './swagger-output.json';
 const endpointsFiles = [
   './src/routes/characterRoutes.js',
-  './src/routes/storyArcRoutes.js'
+  './src/routes/storyArcRoutes.js',
 ];
 
 swaggerAutogen(outputFile, endpointsFiles, doc);

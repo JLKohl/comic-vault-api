@@ -2,35 +2,44 @@ const express = require('express');
 const router = express.Router();
 const storyArcController = require('../controllers/storyArcController');
 
-
-router.get('/', 
-    /* #swagger.tags = ['Story Arc']
+router.get(
+  '/',
+  /* #swagger.tags = ['Story Arc']
     #swagger.path = '/api/story-arc'
     */
-    storyArcController.getAllStoryArcs);
+  storyArcController.getAllStoryArcs
+);
 
-router.get('/:id', 
-    /* #swagger.tags = ['Story Arc']
+router.get(
+  '/:id',
+  /* #swagger.tags = ['Story Arc']
     #swagger.path = '/api/story-arc'
     */
-    storyArcController.getStoryArcById);
+  storyArcController.getStoryArcById
+);
 
-router.post('/', 
-    /* #swagger.tags = ['Story Arc']
+router.post(
+  '/',
+  /* #swagger.tags = ['Story Arc']
     #swagger.path = '/api/story-arc'
     */
-    storyArcController.createStoryArc);
+  storyArcController.createStoryArc
+);
 
-router.put('/:id', 
-    /* #swagger.tags = ['Story Arc']
+router.put(
+  '/:id',
+  /* #swagger.tags = ['Story Arc']
     #swagger.path = '/api/story-arc'
     */
-    storyArcController.updateStoryArc);
+  storyArcController.updateStoryArc
+);
 
-router.delete('/:id', 
-    /* #swagger.tags = ['Story Arc']
+router.delete(
+  '/:id',
+  /* #swagger.tags = ['Story Arc']
     #swagger.path = '/api/story-arc'
     */
-    storyArcController.deleteStoryArc);
+  storyArcController.deleteStoryArc
+);
 
 module.exports = router;
