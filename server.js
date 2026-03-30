@@ -67,6 +67,7 @@ app.get('/', (req, res) => {
 app.use('/auth', authRoutes);
 app.use('/api/characters', characterRoutes);
 app.use('/api/issues', issueRoutes);
+app.use('/api/story-arc', storyArcRoutes); 
 
 // #swagger.ignore = true
 app.use(

@@ -22,12 +22,27 @@ router.get(
 );
 
 // POST a new character
-router.post('/', ensureAuthenticated, characterController.createCharacter);
+router.post('/', 
+  /* #swagger.tags = ['Characters']
+    #swagger.path = '/api/characters'
+    */
+  ensureAuthenticated, 
+  characterController.createCharacter);
 
 // PUT/PATCH to update a character
-router.put('/:id', ensureAuthenticated, characterController.updateCharacter);
+router.put('/:id', 
+    /* #swagger.tags = ['Characters']
+    #swagger.path = '/api/characters'
+    */
+  ensureAuthenticated, 
+  characterController.updateCharacter);
 
 // DELETE a character
-router.delete('/:id', ensureAuthenticated, characterController.deleteCharacter);
+router.delete('/:id', 
+    /* #swagger.tags = ['Characters']
+    #swagger.path = '/api/characters'
+    */
+  ensureAuthenticated, 
+  characterController.deleteCharacter);
 
 module.exports = router;

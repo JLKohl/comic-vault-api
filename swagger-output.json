@@ -23,6 +23,10 @@
     {
       "name": "Story Arc",
       "description": "Routes for managing story arcs"
+    },
+    {
+      "name": "Issues",
+      "description": "Routes for managing Issues"
     }
   ],
   "paths": {
@@ -43,10 +47,11 @@
             "description": "Internal Server Error"
           }
         }
-      }
-    },
-    "/": {
+      },
       "post": {
+        "tags": [
+          "Characters"
+        ],
         "description": "",
         "parameters": [
           {
@@ -65,20 +70,13 @@
             "description": "Bad Request"
           }
         }
-      }
-    },
-    "/{id}": {
+      },
       "put": {
+        "tags": [
+          "Characters"
+        ],
         "description": "",
         "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "x-dev-bypass",
             "in": "header",
@@ -100,16 +98,11 @@
         }
       },
       "delete": {
+        "tags": [
+          "Characters"
+        ],
         "description": "",
         "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "x-dev-bypass",
             "in": "header",
@@ -185,6 +178,100 @@
           "Story Arc"
         ],
         "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/issues": {
+      "get": {
+        "tags": [
+          "Issues"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Issues"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "x-dev-bypass",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Issues"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "x-dev-bypass",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Issues"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "x-dev-bypass",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
