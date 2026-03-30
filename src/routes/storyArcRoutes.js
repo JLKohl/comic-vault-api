@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const storyArcController = require('../controllers/storyArcController');
-const { validators } = require('../validations/storyArcValidation');
+const { validators } = require('../validation/storyArcValidation');
+const { ensureAuthenticated } = require('../middleware/authMiddleware');
 
 router.get(
   '/',
@@ -25,6 +26,7 @@ router.post(
   /* #swagger.tags = ['Story Arc']
     #swagger.path = '/api/story-arc'
     */
+    ensureAuthenticated,
     validators.create,
     storyArcController.createStoryArc
 );
@@ -34,6 +36,7 @@ router.put(
   /* #swagger.tags = ['Story Arc']
     #swagger.path = '/api/story-arc'
     */
+    ensureAuthenticated,
     validators.update,
     storyArcController.updateStoryArc
 );
@@ -43,6 +46,7 @@ router.delete(
   /* #swagger.tags = ['Story Arc']
     #swagger.path = '/api/story-arc'
     */
+    ensureAuthenticated,
     validators.delete,
     storyArcController.deleteStoryArc
 );

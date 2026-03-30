@@ -21,20 +21,23 @@ router.post('/',
     /* #swagger.tags = ['Issues']
     #swagger.path = '/api/issues'
     */
-    ensureAuthenticated, issueController.createIssue);
+    ensureAuthenticated, 
+    issueController.createIssue);
 
 // PUT (Update) an existing issue
 router.put('/:id',
     /* #swagger.tags = ['Issues']
     #swagger.path = '/api/issues'
     */
-    ensureAuthenticated, issueController.updateIssue);
+    ensureAuthenticated, 
+    issueController.updateIssue);
 
 // DELETE an issue
 router.delete('/:id', 
     /* #swagger.tags = ['Issues']
     #swagger.path = '/api/issues'
     */
-    ensureAuthenticated, issueController.deleteIssue);
+    ensureAuthenticated, 
+    issueController.deleteIssue);
 
 module.exports = router;

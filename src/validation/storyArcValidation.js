@@ -16,7 +16,7 @@ const idValidator = [
 ];
 
 // Create a new story arc
-const createStoryArcValidation = [
+const createValidation = [
   body('title')
     .isString().withMessage('Title must be a string')
     .notEmpty().withMessage('Title is required'),
@@ -40,7 +40,7 @@ const createStoryArcValidation = [
 ];
 
 // Update an existing story arc
-const updateStoryArcValidation = [
+const updateValidation = [
   param('id').isMongoId().withMessage('Invalid story arc ID'),
   body('title')
     .optional()
@@ -68,8 +68,8 @@ const updateStoryArcValidation = [
 module.exports = {
     validators: {
       getById: idValidator,
-      create: createValidator,
-      update: updateValidator,
-      delete: deleteValidator,
+      create: createValidation,
+      update: updateValidation,
+      delete: idValidator,
     },
   };
