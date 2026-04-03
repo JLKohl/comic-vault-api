@@ -40,7 +40,7 @@ router.post(
               properties: {
                 name: { type: "string", example: "Spider-Man" },
                 alias: { type: "string", example: "Peter Parker" },
-                powers: {
+                abilities: {
                   type: "array",
                   items: { type: "string" },
                   example: ["Wall-crawling", "Spider sense"]
@@ -76,7 +76,7 @@ router.put(
               properties: {
                 name: { type: "string", example: "Updated Name" },
                 alias: { type: "string", example: "Updated Alias" },
-                powers: {
+                abilities: {
                   type: "array",
                   items: { type: "string" },
                   example: ["New Power"]

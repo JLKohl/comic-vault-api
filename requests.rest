@@ -1,0 +1,161 @@
+### Variables
+@url = http://localhost:3000/api
+
+@charId = 69cf537bb1c940f8c9d1f7d5
+@issueId = 69b1eaf683160834968d6416
+@placeId = [PASTE_ID_HERE]
+@arcId = 69c725385af6ec0e8ee6ef27
+
+
+###############################################################################
+### PLACES ROUTES
+###############################################################################
+
+### 1. GET all places
+GET {{url}}/places
+
+### 2. GET a specific place by ID
+GET {{url}}/places/{{placeId}}
+
+### 3. POST a new place (Requires Login)
+### update schema 
+POST {{url}}/places
+Content-Type: application/json
+
+{
+    "name": "The Obsidian Spire",
+    "description": "A mysterious tower located in the heart of the Wastelands.",
+    "dangerLevel": "Extreme",
+    "associatedHeroes": ["Iron Warden"]
+}
+
+### 4. PUT (Update) a place by ID
+PUT {{url}}/places/{{placeId}}
+Content-Type: application/json
+
+{
+    "name": "The Obsidian Spire (Ruins)",
+    "description": "The remains of the spire after the Great Battle.",
+    "dangerLevel": "Low"
+}
+
+### 5. DELETE a place by ID (Requires Login)
+DELETE {{url}}/places/{{placeId}}
+
+###############################################################################
+### STORY ARCS ROUTES
+###############################################################################
+
+### 1. GET all story arcs
+GET {{url}}/story-arc
+
+### 2. GET a specific story arc by ID
+GET {{url}}/story-arc/{{arcId}}
+
+### 3. POST a new story arc (Requires Login)
+POST {{url}}/story-arc
+Content-Type: application/json
+
+{
+    "title": "The Library of Ash",
+    "description": "An ancient library hidden beneath the city holds secrets that could rewrite history.",
+    "mainCharacters": ["Shadow Finch", "Iron Warden"],
+    "startIssue": 1,
+    "endIssue": 12,
+    "status": "Ongoing"  
+}
+
+### 4. PUT (Update) a story arc by ID
+PUT {{url}}/story-arc/{{arcId}}
+Content-Type: application/json
+
+{
+    "title": "The Fall of the Night-Watch",
+    "description": "The final chapter in the Night-Watch saga.",
+    "status": "Completed"
+   
+}
+
+### 5. DELETE a story arc by ID (Requires Login)
+DELETE {{url}}/story-arc/{{arcId}}
+
+###############################################################################
+### CHARACTERS ROUTES
+###############################################################################
+
+### 1. GET all characters
+GET {{url}}/characters
+
+### 2. GET a specific character by ID 
+GET {{url}}/characters/{{charId}}
+
+### 3. POST a new character (Requires Login)
+POST {{url}}/characters
+Content-Type: application/json
+
+{
+    "title": "Required by Validator", 
+    "name": "Iron Warden",
+    "alias": "Marcus Stone",
+    "species": "Human/Cyborg",
+    "alignment": "Ongoing",
+    "abilities": ["Super Strength", "Metallic Skin"],
+    "firstAppearanceIssue": "Steel Justice #12",
+    "homePlace": "Nocturne City",
+    "status": "Ongoing"
+}
+
+### 4. PUT (Update) a character by ID
+PUT {{url}}/characters/{{charId}}
+Content-Type: application/json
+
+{
+    "title": "Required by Validator", 
+    "name": "Iron Warden",
+    "alias": "Marcus Stone",
+    "alignment": "Anti-hero"
+}
+
+### 5. DELETE a character by ID (Requires Login)
+DELETE {{url}}/characters/{{charId}}
+
+###############################################################################
+### ISSUES ROUTES
+###############################################################################
+
+### 1. GET all issues
+GET {{url}}/issues
+
+### 2. GET a single issue by ID
+### (Paste a valid Mongo ID from your 'GET all' response)
+GET {{url}}/issues/{{issueId}}
+
+### 3. POST a new issue (Requires Login)
+### This must match the schema in src/validation/issueValidation.js
+POST {{url}}/issues
+Content-Type: application/json
+
+{
+    "title": "The Silent Vigil",
+    "issueNumber": 2,
+    "releaseDate": "2026-04-15",
+    "summary": "The Iron Warden joins forces with Shadow Finch to investigate the Spire.",
+    "charactersFeatured": ["Shadow Finch", "Iron Warden"],
+    "place": "The Obsidian Spire",
+    "storyArc": "The Rise of the Night-Watch",
+    "pageCount": 32
+}
+
+### 4. PUT (Update) an existing issue
+PUT {{url}}/issues/{{issueId}}
+Content-Type: application/json
+
+{
+    "title": "The Silent Vigil: Extended Edition",
+    "pageCount": 40,
+    "summary": "An expanded look at the battle for the Spire."
+}
+
+### 5. DELETE an issue by ID (Requires Login)
+DELETE {{url}}/issues/{{issueId}}
+
