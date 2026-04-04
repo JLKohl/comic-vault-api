@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const palcesSchema = new mongoose.Schema(
+const placesSchema = new mongoose.Schema(
   {
     name: {
       type: String,

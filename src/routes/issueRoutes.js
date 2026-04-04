@@ -4,6 +4,7 @@ const issueController = require('../controllers/issueController');
 const { validators } = require('../validation/issueValidation');
 const { ensureAuthenticated } = require('../middleware/authMiddleware');
 
+
 router.get(
   '/',
   /* #swagger.tags = ['Issue']
@@ -15,13 +16,13 @@ router.get(
 router.get(
   '/:id',
   /* #swagger.tags = ['Issue']
-     #swagger.path = '/api/issues/{id}'
-     #swagger.parameters['id'] = {
-        in: 'path',
-        description: 'Issue ID',
-        required: true,
-        type: 'string'
-     }
+    #swagger.path = '/api/issues/{id}'
+    #swagger.parameters['id'] = {
+      in: 'path',
+      description: 'Issue ID',
+      required: true,
+      type: 'string'
+    }
   */
   validators.getById,
   issueController.getIssueById

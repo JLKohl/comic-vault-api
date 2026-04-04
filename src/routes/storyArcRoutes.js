@@ -15,7 +15,13 @@ router.get(
 router.get(
   '/:id',
   /* #swagger.tags = ['Story Arc']
-    #swagger.path = '/api/story-arc'
+    #swagger.path = '/api/story-arc/{id}'
+    #swagger.parameters['id'] = {
+      in: 'path',
+      description: 'Story Arc ID',
+      required: true,
+      type: 'string'
+     }
     */
     validators.getById,
     storyArcController.getStoryArcById

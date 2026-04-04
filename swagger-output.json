@@ -17,7 +17,7 @@
   ],
   "tags": [
     {
-      "name": "Characters",
+      "name": "Character",
       "description": "Routes for managing comic characters"
     },
     {
@@ -25,8 +25,12 @@
       "description": "Routes for managing story arcs"
     },
     {
-      "name": "Issues",
+      "name": "Issue",
       "description": "Routes for managing Issues"
+    },
+    {
+      "name": "Place",
+      "description": "Routes for managing Places"
     }
   ],
   "paths": {
@@ -82,7 +86,7 @@
                     "type": "string",
                     "example": "Peter Parker"
                   },
-                  "powers": {
+                  "abilities": {
                     "type": "array",
                     "items": {
                       "type": "string"
@@ -180,7 +184,7 @@
                     "type": "string",
                     "example": "Updated Alias"
                   },
-                  "powers": {
+                  "abilities": {
                     "type": "array",
                     "items": {
                       "type": "string"
@@ -240,9 +244,6 @@
         "responses": {
           "200": {
             "description": "OK"
-          },
-          "404": {
-            "description": "Not Found"
           },
           "500": {
             "description": "Internal Server Error"
@@ -320,6 +321,34 @@
       }
     },
     "/api/story-arc/{id}": {
+      "get": {
+        "tags": [
+          "Story Arc"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Story Arc ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
       "put": {
         "tags": [
           "Story Arc"
