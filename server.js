@@ -72,18 +72,53 @@ app.use('/api/issues', issueRoutes);
 app.use('/api/story-arc', storyArcRoutes); 
 app.use('/api/places', placesRoutes);
 
+//swagger logout
+app.get('/logout', (req, res) => {
+  req.logout(() => {
+    req.session.destroy(() => {
+      res.redirect('/'); // back to your main landing page
+    });
+  });
+});
+
+//swagger route, includes HTML log out button
 app.use(
   '/api-docs',
-  ensureAuthenticated, // still protects access to docs
+  ensureAuthenticated,
   swaggerUi.serve,
-  swaggerUi.setup(swaggerSpec, {
-    swaggerOptions: {
-      requestInterceptor: (req) => {
-        req.withCredentials = true; // send cookies/session info with requests
-        return req;
+  (req, res) => {
+    // Generate the default Swagger HTML
+    const swaggerHtml = swaggerUi.generateHTML(swaggerSpec, {
+      swaggerOptions: {
+        requestInterceptor: (req) => {
+          req.withCredentials = true;
+          return req;
+        },
       },
-    },
-  })
+    });
+
+    // Add a simple logout button in the corner
+    const logoutButton = `
+      <div style="
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        z-index: 9999;
+      ">
+        <a href="/logout" style="
+          padding: 0.5rem 1rem;
+          background: #000;
+          color: #fff;
+          text-decoration: none;
+          border-radius: 4px;
+          font-weight: bold;
+        ">Logout</a>
+      </div>
+    `;
+
+    // Inject the button into the <body>
+    res.send(swaggerHtml.replace('<body>', `<body>${logoutButton}`));
+  }
 );
 
 mongoose
