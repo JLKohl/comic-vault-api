@@ -1,8 +1,8 @@
 // Mock the story arc model
-jest.mock('../src/models/storyArc');
+jest.mock('../../src/models/storyArc');
 
-const StoryArc = require('../src/models/storyArc');
-const controller = require('../src/controllers/storyArcController');
+const StoryArc = require('../../src/models/storyArc');
+const controller = require('../../src/controllers/storyArcController');
 
 // Helpers to mock Express req/res
 const mockResponse = () => {

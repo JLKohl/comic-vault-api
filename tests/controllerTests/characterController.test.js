@@ -1,8 +1,8 @@
 // Mock the characters model
-jest.mock('../src/models/characters');
+jest.mock('../../src/models/characters');
 
-const Character = require('../src/models/characters');
-const controller = require('../src/controllers/characterController');
+const Character = require('../../src/models/characters');
+const controller = require('../../src/controllers/characterController');
 
 // Helpers to mock Express req/res
 const mockResponse = () => {
