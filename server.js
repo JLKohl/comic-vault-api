@@ -14,6 +14,7 @@ const authRoutes = require('./src/routes/authRoutes');
 const characterRoutes = require('./src/routes/characterRoutes');
 const storyArcRoutes = require('./src/routes/storyArcRoutes');
 const issueRoutes = require('./src/routes/issueRoutes');
+const placesRoutes = require('./src/routes/placesRoutes');
 const { ensureAuthenticated } = require('./src/middleware/authMiddleware');
 
 if (!process.env.MONGO_URI) {
@@ -69,6 +70,7 @@ app.use('/auth', authRoutes);
 app.use('/api/characters', characterRoutes);
 app.use('/api/issues', issueRoutes);
 app.use('/api/story-arc', storyArcRoutes); 
+app.use('/api/places', placesRoutes);
 
 app.use(
   '/api-docs',
