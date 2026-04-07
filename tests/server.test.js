@@ -49,6 +49,7 @@ const loadServer = async ({
 	const swaggerServe = 'swaggerServeMiddleware';
 	const swaggerSetupMiddleware = 'swaggerSetupMiddleware';
 	const swaggerSetup = jest.fn(() => swaggerSetupMiddleware);
+	const swaggerGenerateHTML = jest.fn(() => '<html><body>Swagger</body></html>');
 	const ensureAuthenticated = jest.fn((req, res, next) => next());
 	const authRoutes = { route: 'authRoutes' };
 	const characterRoutes = { route: 'characterRoutes' };
@@ -66,6 +67,7 @@ const loadServer = async ({
 	jest.doMock('swagger-ui-express', () => ({
 		serve: swaggerServe,
 		setup: swaggerSetup,
+		generateHTML: swaggerGenerateHTML,
 	}));
 
 	jest.doMock('../src/middleware/passport', () => ({}));
@@ -95,6 +97,7 @@ const loadServer = async ({
 		connectMock,
 		sessionMock,
 		swaggerSetup,
+		swaggerGenerateHTML,
 		ensureAuthenticated,
 		authRoutes,
 		characterRoutes,
@@ -207,16 +210,26 @@ describe('server routes and middleware', () => {
 			'/api-docs',
 			ensureAuthenticated,
 			'swaggerServeMiddleware',
-			'swaggerSetupMiddleware'
+			expect.any(Function)
 		);
 	});
 });
 
 describe('swagger configuration', () => {
 	it('should fallback to default swagger spec when swagger-output.json is unavailable', async () => {
-		const { swaggerSetup } = await loadServer({ mockSwaggerReadFailure: true });
+		const { app, swaggerGenerateHTML } = await loadServer({
+			mockSwaggerReadFailure: true,
+		});
 
-		expect(swaggerSetup).toHaveBeenCalledWith(
+		const docsCall = app.use.mock.calls.find((call) => call[0] === '/api-docs');
+		expect(docsCall).toBeDefined();
+
+		const docsHandler = docsCall[3];
+		const req = {};
+		const res = { send: jest.fn() };
+		docsHandler(req, res);
+
+		expect(swaggerGenerateHTML).toHaveBeenCalledWith(
 			expect.objectContaining({
 				openapi: '3.0.0',
 				info: expect.objectContaining({
@@ -224,7 +237,9 @@ describe('swagger configuration', () => {
 					version: '1.0.0',
 					description: 'Swagger docs not generated yet.',
 				}),
-			})
+			}),
+			expect.any(Object)
 		);
+		expect(res.send).toHaveBeenCalledWith(expect.stringContaining('/logout'));
 	});
 });
