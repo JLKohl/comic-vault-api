@@ -2,15 +2,18 @@ const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 require('dotenv').config();
 
+const appBaseUrl = (
+  process.env.PUBLIC_BASE_URL ||
+  process.env.RENDER_EXTERNAL_URL ||
+  'http://localhost:3000'
+).replace(/\/$/, '');
+
 passport.use(
   new GoogleStrategy(
     {
       clientID: process.env.CLIENT_ID,
       clientSecret: process.env.CLIENT_SECRET,
-      callbackURL:
-        process.env.NODE_ENV === 'production'
-          ? 'https://comic-vault-api-vdbm.onrender.com/auth/google/callback'
-          : 'http://localhost:3000/auth/google/callback',
+      callbackURL: `${appBaseUrl}/auth/google/callback`,
     },
     (accessToken, refreshToken, profile, done) => {
       return done(null, profile);

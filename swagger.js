@@ -1,6 +1,11 @@
 const swaggerAutogen = require('swagger-autogen')({ openapi: '3.0.0' });
 
 const port = process.env.PORT || 3000;
+const appBaseUrl = (
+  process.env.PUBLIC_BASE_URL ||
+  process.env.RENDER_EXTERNAL_URL ||
+  `http://localhost:${port}`
+).replace(/\/$/, '');
 
 const doc = {
   info: {
@@ -11,12 +16,12 @@ const doc = {
   },
   servers: [
     {
-      url: `http://localhost:${port}`,
-      description: 'Local development server',
+      url: appBaseUrl,
+      description: 'Current deployment server',
     },
     {
-      url: 'https://comic-vault-api-f41d.onrender.com',
-      description: 'Production server (Render)',
+      url: `http://localhost:${port}`,
+      description: 'Local development server',
     },
   ],
 
