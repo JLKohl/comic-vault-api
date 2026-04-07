@@ -72,9 +72,16 @@ app.use('/api/story-arc', storyArcRoutes);
 
 app.use(
   '/api-docs',
-  ensureAuthenticated,
+  ensureAuthenticated, // still protects access to docs
   swaggerUi.serve,
-  swaggerUi.setup(swaggerSpec)
+  swaggerUi.setup(swaggerSpec, {
+    swaggerOptions: {
+      requestInterceptor: (req) => {
+        req.withCredentials = true; // send cookies/session info with requests
+        return req;
+      },
+    },
+  })
 );
 
 mongoose
