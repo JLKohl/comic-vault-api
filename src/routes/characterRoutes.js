@@ -38,13 +38,18 @@ router.post(
             schema: {
               type: "object",
               properties: {
-                name: { type: "string", example: "Spider-Man" },
-                alias: { type: "string", example: "Peter Parker" },
+                name: { type: "string", example: "Iron Warden" },
+                alias: { type: "string", example: "Marcus Stone" },
+                species: { type: "string", example: "Human/Cyborg" },
+                alignment: { type: "string", example: "Hero" },
                 abilities: {
                   type: "array",
                   items: { type: "string" },
-                  example: ["Wall-crawling", "Spider sense"]
-                }
+                  example: ["Super Strength", "Metallic Skin"]
+                },
+                firstAppearanceIssue: { type: "string", example: "Steel Justice #12" },
+                homePlace: { type: "string", example: "Nocturne City" },
+                status: { type: "string", example: "Ongoing" }
               },
               required: ["name"]
             }
@@ -59,35 +64,46 @@ router.post(
 
 router.put(
   '/:id',
-  /* #swagger.tags = ['Character']
-     #swagger.path = '/api/characters/{id}'
-     #swagger.parameters['id'] = {
-        in: 'path',
-        description: 'Character ID',
-        required: true,
-        type: 'string'
-     }
-     #swagger.requestBody = {
-        required: true,
-        content: {
-          "application/json": {
-            schema: {
-              type: "object",
-              properties: {
-                name: { type: "string", example: "Updated Name" },
-                alias: { type: "string", example: "Updated Alias" },
-                abilities: {
-                  type: "array",
-                  items: { type: "string" },
-                  example: ["New Power"]
-                }
-              }
+/* #swagger.tags = ['Character']
+   #swagger.path = '/api/characters/{id}'
+   #swagger.parameters['id'] = {
+      in: 'path',
+      description: 'Character ID',
+      required: true,
+      type: 'string'
+   }
+   #swagger.requestBody = {
+      required: true,
+      content: {
+        "application/json": {
+          schema: {
+            type: "object",
+            properties: {
+              name: { type: "string", example: "Updated Name" },
+              alias: { type: "string", example: "Updated Alias" },
+              species: { type: "string", example: "Human" },
+              alignment: { type: "string", example: "Hero" },
+              abilities: {
+                type: "array",
+                items: { type: "string" },
+                example: ["New Power"]
+              },
+              firstAppearanceIssue: { type: "string", example: "Issue #5" },
+              homePlace: { type: "string", example: "Gotham" },
+              status: { type: "string", example: "Ongoing" }
             }
           }
         }
-     }
-  */
+      }
+   }
+*/
   ensureAuthenticated,
+
+  (req, res, next) => {
+    console.log('PUT HIT', req.params.id);
+    next();
+  },
+
   validators.update,
   characterController.updateCharacter
 );

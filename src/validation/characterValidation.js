@@ -17,9 +17,9 @@ const validate = (req, res, next) => {
   
   // Create a character arc
   const createValidation = [
-    body('title')
-        .isString().withMessage('Title must be a string')
-        .notEmpty().withMessage('Title is required'),
+    body('name')
+        .isString().withMessage('Name must be a string')
+        .notEmpty().withMessage('Name is required'),
     body('alias')
         .optional()
         .isString().withMessage('Alias must be a string'),
@@ -48,9 +48,9 @@ const validate = (req, res, next) => {
   // Update an existing character
   const updateValidation = [
     param('id').isMongoId().withMessage('Invalid character ID'),
-    body('title')
-        .isString().withMessage('Title must be a string')
-        .notEmpty().withMessage('Title is required'),
+    body('name')
+        .isString().withMessage('Name must be a string')
+        .notEmpty().withMessage('Name is required'),
     body('alias')
         .optional()
         .isString().withMessage('Alias must be a string'),

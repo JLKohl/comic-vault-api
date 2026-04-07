@@ -80,11 +80,19 @@
                 "properties": {
                   "name": {
                     "type": "string",
-                    "example": "Spider-Man"
+                    "example": "Iron Warden"
                   },
                   "alias": {
                     "type": "string",
-                    "example": "Peter Parker"
+                    "example": "Marcus Stone"
+                  },
+                  "species": {
+                    "type": "string",
+                    "example": "Human/Cyborg"
+                  },
+                  "alignment": {
+                    "type": "string",
+                    "example": "Hero"
                   },
                   "abilities": {
                     "type": "array",
@@ -92,9 +100,21 @@
                       "type": "string"
                     },
                     "example": [
-                      "Wall-crawling",
-                      "Spider sense"
+                      "Super Strength",
+                      "Metallic Skin"
                     ]
+                  },
+                  "firstAppearanceIssue": {
+                    "type": "string",
+                    "example": "Steel Justice #12"
+                  },
+                  "homePlace": {
+                    "type": "string",
+                    "example": "Nocturne City"
+                  },
+                  "status": {
+                    "type": "string",
+                    "example": "Ongoing"
                   }
                 },
                 "required": [
@@ -184,6 +204,14 @@
                     "type": "string",
                     "example": "Updated Alias"
                   },
+                  "species": {
+                    "type": "string",
+                    "example": "Human"
+                  },
+                  "alignment": {
+                    "type": "string",
+                    "example": "Hero"
+                  },
                   "abilities": {
                     "type": "array",
                     "items": {
@@ -192,6 +220,18 @@
                     "example": [
                       "New Power"
                     ]
+                  },
+                  "firstAppearanceIssue": {
+                    "type": "string",
+                    "example": "Issue #5"
+                  },
+                  "homePlace": {
+                    "type": "string",
+                    "example": "Gotham"
+                  },
+                  "status": {
+                    "type": "string",
+                    "example": "Ongoing"
                   }
                 }
               }
