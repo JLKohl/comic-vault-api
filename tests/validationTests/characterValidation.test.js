@@ -30,7 +30,7 @@ describe('Character validation middleware', () => {
 	describe('create validator', () => {
 		it('should pass when payload is valid', async () => {
 			const validBody = {
-				title: 'Superman',
+				name: 'Superman',
 				alias: 'Clark Kent',
 				species: 'Kryptonian',
 				alignment: 'Hero',
@@ -47,9 +47,9 @@ describe('Character validation middleware', () => {
 			expect(res.json).not.toHaveBeenCalled();
 		});
 
-		it('should fail when title is missing', async () => {
+		it('should fail when name is missing', async () => {
 			const { res, next } = await runValidator(validators.create, {
-				body: { alias: 'No Title Character' },
+				body: { alias: 'No Name Character' },
 			});
 
 			expect(next).not.toHaveBeenCalled();
@@ -58,7 +58,7 @@ describe('Character validation middleware', () => {
 			const errorPayload = res.json.mock.calls[0][0];
 			const messages = errorPayload.errors.map((error) => error.msg);
 			expect(messages).toEqual(
-				expect.arrayContaining(['Title must be a string'])
+				expect.arrayContaining(['Name must be a string', 'Name is required'])
 			);
 		});
 
@@ -102,7 +102,7 @@ describe('Character validation middleware', () => {
 			const { res, next } = await runValidator(validators.update, {
 				params: { id: '507f1f77bcf86cd799439011' },
 				body: {
-					title: 'Batman',
+					name: 'Batman',
 					status: 'Completed',
 					abilities: ['Detective skills'],
 				},

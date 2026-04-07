@@ -98,12 +98,6 @@ router.put(
    }
 */
   ensureAuthenticated,
-
-  (req, res, next) => {
-    console.log('PUT HIT', req.params.id);
-    next();
-  },
-
   validators.update,
   characterController.updateCharacter
 );
