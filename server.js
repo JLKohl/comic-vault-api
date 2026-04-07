@@ -38,10 +38,9 @@ try {
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.use(cors({
-  credentials: true,
-  origin: true
-}));
+app.set('trust proxy', 1);
+
+app.use(cors());
 app.use(express.json());
 
 app.use(
@@ -90,8 +89,25 @@ app.use(
   ensureAuthenticated,
   swaggerUi.serve,
   (req, res) => {
+    const protocol =
+      req.protocol || req.headers?.['x-forwarded-proto'] || 'http';
+    const host =
+      (typeof req.get === 'function' && req.get('host')) ||
+      req.headers?.host ||
+      `localhost:${port}`;
+
+    const runtimeSwaggerSpec = {
+      ...swaggerSpec,
+      servers: [
+        {
+          url: `${protocol}://${host}`,
+          description: 'Current deployment server',
+        },
+      ],
+    };
+
     // Generate the default Swagger HTML
-    const swaggerHtml = swaggerUi.generateHTML(swaggerSpec, {
+    const swaggerHtml = swaggerUi.generateHTML(runtimeSwaggerSpec, {
       swaggerOptions: {
         requestInterceptor: (req) => {
           req.withCredentials = true;
