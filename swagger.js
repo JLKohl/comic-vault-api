@@ -35,7 +35,7 @@ const endpointsFiles = [
   './src/routes/characterRoutes.js',
   './src/routes/storyArcRoutes.js',
   './src/routes/issueRoutes.js',
-  // './src/routes/placesRoutes.js'
+  './src/routes/placesRoutes.js'
 ];
 
 swaggerAutogen(outputFile, endpointsFiles, doc);

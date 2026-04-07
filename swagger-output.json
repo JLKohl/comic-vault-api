@@ -700,6 +700,233 @@
           }
         }
       }
+    },
+    "/api/places": {
+      "get": {
+        "tags": [
+          "Place"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Place"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "x-dev-bypass",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "New York"
+                  },
+                  "type": {
+                    "type": "string",
+                    "example": "City"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "A large metropolitan area"
+                  },
+                  "population": {
+                    "type": "number",
+                    "example": 8400000
+                  },
+                  "technologyLevel": {
+                    "type": "string",
+                    "example": "Advanced"
+                  },
+                  "notableLocations": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "example": [
+                      "Downtown",
+                      "Harbor"
+                    ]
+                  }
+                },
+                "required": [
+                  "name",
+                  "type"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/places/{id}": {
+      "get": {
+        "tags": [
+          "Place"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Place ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Place"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Place ID"
+          },
+          {
+            "name": "x-dev-bypass",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Updated Place Name"
+                  },
+                  "type": {
+                    "type": "string",
+                    "example": "Planet"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "Updated description"
+                  },
+                  "population": {
+                    "type": "number",
+                    "example": 12000000
+                  },
+                  "technologyLevel": {
+                    "type": "string",
+                    "example": "Post-scarcity"
+                  },
+                  "notableLocations": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "example": [
+                      "Capital District",
+                      "Orbital Port"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Place"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Place ID"
+          },
+          {
+            "name": "x-dev-bypass",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
     }
   }
 }
