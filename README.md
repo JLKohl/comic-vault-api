@@ -4,24 +4,31 @@ RESTful API for managing comic characters, issues, story arcs, and worlds.
 
 ## API Documentation
 
-Swagger UI is available at:
+Swagger UI is available at the deployed application:
 
-`http://localhost:3000/api-docs`
+https://your-app-name.onrender.com/api-docs
 
-If you run the app on a different port, replace `3000` with your configured `PORT` value.
+This project is deployed on Render for public access and testing.
 
 ## Swagger Autogen Setup
 
 This project uses `swagger-autogen` to generate `swagger-output.json`.
 
-1. Generate docs:
+### Generate documentation
+npm run swagger
 
-`npm run swagger`
+### Start the API
+node server.js
 
-2. Start the API:
+The server serves Swagger UI from the generated `swagger-output.json` file.
 
-`node server.js`
+## Note
 
-`server.js` serves Swagger UI from the generated `swagger-output.json` file.
+Whenever routes are added or modified, re-run:
+npm run swagger
 
-Whenever you add or change routes, run `npm run swagger` again to refresh docs.
+to keep API documentation up to date.
+
+## Technologies
+
+Node.js • Express • REST API • Swagger (swagger-autogen) • Render deployment
