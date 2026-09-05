@@ -4,11 +4,9 @@ RESTful API for managing comic characters, issues, story arcs, and worlds.
 
 ## API Documentation
 
-Swagger UI is available at the deployed application:
+This project is deployed on Render for public access and testing.
 
 https://your-app-name.onrender.com/api-docs
-
-This project is deployed on Render for public access and testing.
 
 ## Swagger Autogen Setup
 
