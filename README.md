@@ -2,12 +2,6 @@
 
 RESTful API for managing comic characters, issues, story arcs, and worlds.
 
-## API Documentation
-
-This project is deployed on Render for public access and testing.
-
-https://your-app-name.onrender.com/api-docs
-
 ## Swagger Autogen Setup
 
 This project uses `swagger-autogen` to generate `swagger-output.json`.
